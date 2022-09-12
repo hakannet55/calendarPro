@@ -1,0 +1,36 @@
+<div class="card m-3 p-3">
+  <h4>Takvim</h4>
+  <div class="p-3">
+    <atom-button-component
+      text="Personel Ekle"
+      btnType="outline-success"
+      icon="audio-description"
+      extraClass="m-2"
+      (click)="clickPersonalCreate()"
+    ></atom-button-component>
+    <atom-button-component
+      text="Proje Ekle"
+      btnType="linkedin"
+      icon="product-hunt"
+      extraClass="m-2"
+    ></atom-button-component>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Personel</th>
+        <th>İlerleme</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of setDataList(); let i = index">
+        <td>
+          <div class="btn" (click)="removePersonelFromList(i)">Kaldır</div>
+        </td>
+        <td>{{ item.name }}</td>
+        <td>55%</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

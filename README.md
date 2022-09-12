@@ -6,6 +6,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 yarn start
 http://localhost:4213/
 
+port: localhost:4213
+
 live demo:
 https://www.akveo.com/ngx-admin/pages/dashboard?theme=corporate&utm_campaign=ngx_admin%20-%20demo%20-%20ngx_admin%20github%20readme&utm_source=ngx_admin&utm_medium=referral&utm_content=github_readme_theme_corporate
 
