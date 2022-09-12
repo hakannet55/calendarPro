@@ -1,10 +1,8 @@
-import {ChangeDetectionStrategy, Component} from "@angular/core";
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector:'loader-animation-component',
-  templateUrl:'./loader-animation-component.html',
-  changeDetection:ChangeDetectionStrategy.OnPush
+  selector: 'loader-animation-component',
+  templateUrl: './loader-animation-component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoaderAnimationComponent {
-
-}
+export class LoaderAnimationComponent {}
