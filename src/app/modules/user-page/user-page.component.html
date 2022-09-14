@@ -1,0 +1,52 @@
+<div class="card m-3 p-3">
+  <div>
+    <atom-button-component
+      *ngIf="!showCreateForm"
+      text="Personel Ekle"
+      btnType="outline-success"
+      icon="user"
+      extraClass="m-2"
+      (click)="clickShowCreateProjectForm()"
+    ></atom-button-component>
+  </div>
+
+  <div *ngIf="showCreateForm" style="background: #f0f0df;border-radius: 10px">
+    <h4 class="p-2" style="font-size: 0.9em">
+      <span style="font-size: 1.2em;color: lightslategrey;">Proje Ekleme</span>
+      <span class="btn close-btn" (click)="showCreateForm = false">X</span>
+    </h4>
+    <div class="p-3">
+      <atom-input-text label="Proje Adı" (changed)="personelName = $event"></atom-input-text>
+      <atom-input-text label="Detay" (changed)="personelDetail = $event"></atom-input-text>
+    </div>
+    <div class="d-flex pb-2">
+      <atom-button-component (click)="saveNew()" style="margin: auto" text="Kaydet" icon="save"></atom-button-component>
+    </div>
+  </div>
+
+  <table class="table table-striped table-hover table-sm">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Proje</th>
+        <th>İlerleme</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of setDataList(); let i = index">
+        <td>
+          <span
+            title="Seçili öğeyi kaldır?"
+            class="pointer fa fa-fw fa-minus-circle text-c-red"
+            (click)="removePersonelFromList(i)"
+          ></span>
+        </td>
+        <td>
+          <h4>{{ item.name }}</h4>
+          <p>{{ item.detail }}</p>
+        </td>
+        <td>55%</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

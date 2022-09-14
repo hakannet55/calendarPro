@@ -1,4 +1,4 @@
-import { LocalDatabaseDto, ProjectModel, UserModel } from '../models/ecommon-models';
+import { LocalDatabaseDto } from '../models/ecommon-models';
 
 export function getData(key = 'data'): LocalDatabaseDto {
   const item = localStorage.getItem(key);
@@ -19,19 +19,9 @@ export function setData(obj: LocalDatabaseDto, key = 'data'): void {
   localStorage.setItem(key, JSON.stringify(objDat));
 }
 
-export function addPersonel(personal: UserModel): void {
-  const previousData = getData();
-  setData({ ...previousData, users: [...(previousData?.users || []), personal] });
-}
-
-export function removePersonel(index: number): void {
-  const previousData = getData();
-  setData({ ...previousData, users: [...(previousData?.users || []).filter((itm, idx) => idx !== index)] });
-}
-
-export function addProject(project: ProjectModel): void {
-  const previousData = getData();
-  setData({ ...previousData, project: [...(previousData?.project || []), project] });
+export function dataInsertId<T>(data: any, list: any[]): T {
+  Object.assign(data, { id: list.length + 1 });
+  return data;
 }
 
 export function snq(callback, defaultValue = null) {

@@ -35,3 +35,39 @@ nav::-webkit-scrollbar-thumb:hover {
   color: black !important;
   box-shadow: unset !important;
 }
+
+.btn.btn-default {
+  border: 1px solid lightslategray;
+  padding: 7px;
+}
+.btn.btn-default:hover {
+  background: lightblue;
+  color: black;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.close-btn {
+  color: #e01e1e;
+  background: white;
+  width: 38px;
+  height: 38px;
+  padding: 2px;
+  line-height: 2;
+  border-radius: 100%;
+  float: right;
+  margin: 6px;
+}
+.close-btn:hover {
+  background: lightcoral;
+  color: white;
+}
+.input-group {
+  margin-bottom: 2px;
+  display: inline-block;
+  width: auto;
+  padding: 3px;
+  padding-left: 0px;
+}

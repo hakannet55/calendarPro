@@ -4,8 +4,8 @@ import { Component, Input } from '@angular/core';
   selector: 'atom-button-component',
   template: `
     <div class="{{ getClass() }}">
-      <span>{{ text }}</span>
       <i *ngIf="icon" class="fa fa-fw fa-{{ icon }}"></i>
+      <span>{{ text }}</span>
     </div>
   `,
 })

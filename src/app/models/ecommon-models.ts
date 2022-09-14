@@ -8,12 +8,24 @@ export namespace eCommon {
     action?: Callback;
   }
 }
+
+export interface TaskDataModel {
+  date: string;
+  startDate: string;
+  endDate: string;
+  name: string;
+  id?: number;
+  project: ProjectModel;
+}
+
 export interface UserModel {
   name: string;
+  taskList?: TaskDataModel[];
   id?: number;
 }
 
 export interface ProjectModel {
+  id?: number;
   name: string;
   detail: string;
 }
