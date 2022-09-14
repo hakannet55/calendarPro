@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { UserModel } from '../../../models/ecommon-models';
-import snq, { addPersonel, getData, removePersonel } from '../../../utils/common-utils';
+import snq, { getData } from '../../../utils/common-utils';
+import { Router } from '@angular/router';
+import { DataManageService } from '../../../services/data-manage.service';
 
 @Component({
   selector: 'calendar-main-component',
@@ -9,20 +11,16 @@ import snq, { addPersonel, getData, removePersonel } from '../../../utils/common
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarMainComponent {
-  constructor() {}
+  constructor(private route: Router, private dataManageService: DataManageService) {}
 
   setDataList(): UserModel[] {
     return snq(() => getData().users) || [];
   }
 
-  clickPersonalCreate() {
-    const name = window.prompt('isim', '');
-    if (name) {
-      addPersonel({ name, id: 1 });
-    }
+  navigatePersonal() {
+    this.route.navigate(['/user-page']);
   }
-
-  removePersonelFromList(i: number): void {
-    removePersonel(i);
+  navigateProjectPage(): void {
+    this.route.navigate(['/project-manager']);
   }
 }

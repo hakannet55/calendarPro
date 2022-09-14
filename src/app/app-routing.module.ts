@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login-component/login-component';
-import { SummaryComponent } from './components';
+import { CalendarMainComponent } from './modules/calendar/component/calendar-main.component';
 
 const routes: Routes = [
   {
@@ -10,11 +10,23 @@ const routes: Routes = [
   },
   {
     path: 'summary',
-    component: SummaryComponent,
+    component: CalendarMainComponent,
+  },
+  {
+    path: 'user-page',
+    loadChildren: () => import('./modules/user-page/user-page.module').then(m => m.UserPageModule),
+  },
+  {
+    path: 'project-manager',
+    loadChildren: () => import('./modules/project-manager/project-manager.module').then(m => m.ProjectManagerModule),
   },
   {
     path: 'calendar',
     loadChildren: () => import('./modules/calendar/calendar.module').then(m => m.CalendarModule),
+  },
+  {
+    path: 'setting',
+    loadChildren: () => import('./modules/setting/setting.module').then(m => m.SettingModule),
   },
   {
     path: '**',

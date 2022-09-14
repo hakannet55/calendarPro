@@ -1,24 +1,26 @@
 <div class="card m-3 p-3">
-  <h4>Takvim</h4>
-  <div class="p-3">
+  <div>
     <atom-button-component
-      text="Personel Ekle"
+      text="Personel Listesi"
       btnType="outline-success"
-      icon="audio-description"
+      icon="user"
       extraClass="m-2"
-      (click)="clickPersonalCreate()"
+      (click)="navigatePersonal()"
     ></atom-button-component>
     <atom-button-component
-      text="Proje Ekle"
+      text="Proje Listesi"
       btnType="linkedin"
-      icon="product-hunt"
+      icon="folder-o"
       extraClass="m-2"
+      (click)="navigateProjectPage()"
     ></atom-button-component>
   </div>
-
-  <table class="table">
+  <hr />
+  <h4>Genel Takvim</h4>
+  <table class="table table-striped table-hover table-sm">
     <thead>
       <tr>
+        <th>#</th>
         <th>Personel</th>
         <th>İlerleme</th>
       </tr>
@@ -26,7 +28,7 @@
     <tbody>
       <tr *ngFor="let item of setDataList(); let i = index">
         <td>
-          <div class="btn" (click)="removePersonelFromList(i)">Kaldır</div>
+          User
         </td>
         <td>{{ item.name }}</td>
         <td>55%</td>

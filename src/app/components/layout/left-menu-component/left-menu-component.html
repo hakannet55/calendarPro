@@ -1,42 +1,89 @@
-<nav class="pcoded-navbar" navbar-theme="themelight1" active-item-theme="theme1" sub-item-theme="theme2" active-item-style="style0" pcoded-navbar-position="fixed">
-  <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
-  <div class="pcoded-inner-navbar main-menu mCustomScrollbar _mCS_1" style="height: calc(100% - 56px);"><div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical_horizontal mCSB_inside" style="max-height: none;" tabindex="0">
-    <div id="mCSB_1_container_wrapper" class="mCSB_container_wrapper mCS_x_hidden mCS_no_scrollbar_x">
-      <div id="mCSB_1_container" class="mCSB_container" style="position: relative; top: -1px; left: 0px; width: 100%;" dir="ltr">
-        <div class="">
-          <div class="main-menu-header">
-            <img class="img-80 img-radius mCS_img_loaded" src="assets/images/avatar-4.jpg" alt="User-Profile-Image">
-            <div class="user-details">
-              <span id="more-details">John Doe<i class="fa fa-caret-down"></i></span>
+<nav
+  class="pcoded-navbar"
+  navbar-theme="themelight1"
+  active-item-theme="theme1"
+  sub-item-theme="theme2"
+  active-item-style="style0"
+  pcoded-navbar-position="fixed"
+>
+  <div class="sidebar_toggle">
+    <a href="#"><i class="icon-close icons"></i></a>
+  </div>
+  <div class="pcoded-inner-navbar main-menu mCustomScrollbar _mCS_1" style="height: calc(100% - 56px);">
+    <div
+      id="mCSB_1"
+      class="mCustomScrollBox mCS-light mCSB_vertical_horizontal mCSB_inside"
+      style="max-height: none;"
+      tabindex="0"
+    >
+      <div id="mCSB_1_container_wrapper" class="mCSB_container_wrapper mCS_x_hidden mCS_no_scrollbar_x">
+        <div
+          id="mCSB_1_container"
+          class="mCSB_container"
+          style="position: relative; top: -1px; left: 0px; width: 100%;"
+          dir="ltr"
+        >
+          <div class="">
+            <div class="main-menu-header">
+              <img class="img-80 img-radius mCS_img_loaded" src="assets/images/avatar-4.jpg" alt="User-Profile-Image" />
+              <div class="user-details">
+                <span id="more-details">John Doe<i class="fa fa-caret-down"></i></span>
+              </div>
+            </div>
+            <div class="main-menu-content">
+              <ul>
+                <li class="more-details">
+                  <a href="user-profile.html"><i class="ti-user"></i>View Profile</a>
+                  <a href="#!"><i class="ti-settings"></i>Settings</a>
+                  <a href="auth-normal-sign-in.html"><i class="ti-layout-sidebar-left"></i>Logout</a>
+                </li>
+              </ul>
             </div>
           </div>
-          <div class="main-menu-content">
-            <ul>
-              <li class="more-details">
-                <a href="user-profile.html"><i class="ti-user"></i>View Profile</a>
-                <a href="#!"><i class="ti-settings"></i>Settings</a>
-                <a href="auth-normal-sign-in.html"><i class="ti-layout-sidebar-left"></i>Logout</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <ul (click)="clickedMenu()" class="pcoded-item pcoded-left-item" item-border="true" item-border-style="none" subitem-border="true">
-          <li class="">
-            <a href="index.html" class="waves-effect waves-dark">
-              <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-              <span class="pcoded-mtext">Dashboard</span>
-              <span class="pcoded-mcaret"></span>
-            </a>
-          </li>
-          <li class="">
-            <a routerLink="calendar" class="waves-effect waves-dark">
-              <span class="pcoded-micon"><i class="ti-agenda"></i><b>D</b></span>
-              <span class="pcoded-mtext">Takvim</span>
-              <span class="pcoded-mcaret"></span>
-            </a>
-          </li>
-        </ul>
-        <!-- Template sample
+          <ul
+            (click)="clickedMenu()"
+            class="pcoded-item pcoded-left-item"
+            item-border="true"
+            item-border-style="none"
+            subitem-border="true"
+          >
+            <li class="">
+              <a href="index.html" class="waves-effect waves-dark">
+                <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                <span class="pcoded-mtext">Dashboard</span>
+                <span class="pcoded-mcaret"></span>
+              </a>
+            </li>
+            <li class="">
+              <a routerLink="calendar" class="waves-effect waves-dark">
+                <span class="pcoded-micon"><i class="ti-agenda"></i><b>D</b></span>
+                <span class="pcoded-mtext">Takvim</span>
+                <span class="pcoded-mcaret"></span>
+              </a>
+            </li>
+            <li class="">
+              <a routerLink="user-page" class="waves-effect waves-dark">
+                <span class="pcoded-micon"><i class="ti-user"></i><b>D</b></span>
+                <span class="pcoded-mtext">Personel</span>
+                <span class="pcoded-mcaret"></span>
+              </a>
+            </li>
+            <li class="">
+              <a routerLink="project-manager" class="waves-effect waves-dark">
+                <span class="pcoded-micon"><i class="ti-package"></i><b>D</b></span>
+                <span class="pcoded-mtext">Projeler</span>
+                <span class="pcoded-mcaret"></span>
+              </a>
+            </li>
+            <li class="">
+              <a routerLink="setting" class="waves-effect waves-dark">
+                <span class="pcoded-micon"><i class="ti-settings"></i><b>D</b></span>
+                <span class="pcoded-mtext">Ayarlar</span>
+                <span class="pcoded-mcaret"></span>
+              </a>
+            </li>
+          </ul>
+          <!-- Template sample
         <div class="p-15 p-b-0">
           <form class="form-material">
             <div class="form-group form-primary">
@@ -201,7 +248,40 @@
             </ul>
           </li>
         </ul>-->
+        </div>
+      </div>
+      <div
+        id="mCSB_1_scrollbar_vertical"
+        class="mCSB_scrollTools mCSB_1_scrollbar mCS-light mCSB_scrollTools_vertical"
+        style="display: block;"
+      >
+        <div class="mCSB_draggerContainer">
+          <div
+            id="mCSB_1_dragger_vertical"
+            class="mCSB_dragger"
+            style="position: absolute; min-height: 30px; display: block; height: 544px; max-height: 735px; top: 1px;"
+          >
+            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+          </div>
+          <div class="mCSB_draggerRail"></div>
+        </div>
+      </div>
+      <div
+        id="mCSB_1_scrollbar_horizontal"
+        class="mCSB_scrollTools mCSB_1_scrollbar mCS-light mCSB_scrollTools_horizontal"
+        style="display: none;"
+      >
+        <div class="mCSB_draggerContainer">
+          <div
+            id="mCSB_1_dragger_horizontal"
+            class="mCSB_dragger"
+            style="position: absolute; min-width: 30px; width: 0px; left: 0px;"
+          >
+            <div class="mCSB_dragger_bar"></div>
+          </div>
+          <div class="mCSB_draggerRail"></div>
+        </div>
       </div>
     </div>
-    <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; display: block; height: 544px; max-height: 735px; top: 1px;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div></div><div id="mCSB_1_scrollbar_horizontal" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light mCSB_scrollTools_horizontal" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_horizontal" class="mCSB_dragger" style="position: absolute; min-width: 30px; width: 0px; left: 0px;"><div class="mCSB_dragger_bar"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div>
+  </div>
 </nav>
