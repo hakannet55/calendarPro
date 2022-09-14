@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { ProjectModel } from '../../models/ecommon-models';
-import snq, { getData } from '../../utils/common-utils';
+import { ProjectModel } from '../../shared/models/ecommon-models';
+import snq, { getData } from '../../shared/utils/common-utils';
 import { DataManageService } from '../../services/data-manage.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class ProjectManagerComponent {
 
   constructor(private dataManageService: DataManageService) {}
 
-  setDataList(): ProjectModel[] {
+  getDataList(): ProjectModel[] {
     return snq(() => getData().project) || [];
   }
 

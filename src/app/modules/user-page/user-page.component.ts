@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { ProjectModel } from '../../models/ecommon-models';
-import snq, { getData } from '../../utils/common-utils';
-import { DataManageService } from '../../services/data-manage.service';
+import { DataManageService } from 'src/app/services/data-manage.service';
+import { ProjectModel } from '../../shared/models/ecommon-models';
+import snq, { getData } from '../../shared/utils/common-utils';
 
 @Component({
   selector: 'user-page-component',
@@ -16,8 +16,8 @@ export class UserPageComponent {
 
   constructor(private dataManageService: DataManageService) {}
 
-  setDataList(): ProjectModel[] {
-    return snq(() => getData().project) || [];
+  getDataList(): ProjectModel[] {
+    return snq(() => getData().users) || [];
   }
 
   clickShowCreateProjectForm(): void {
@@ -32,6 +32,7 @@ export class UserPageComponent {
 
   saveNew(): void {
     //, detail: this.personelDetail
+    console.log(123);
     this.dataManageService.addPersonel({ name: this.personelName });
   }
 }

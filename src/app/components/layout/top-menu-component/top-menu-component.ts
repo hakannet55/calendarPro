@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { eCommon } from '../../../models/ecommon-models';
+import { eCommon } from '../../../shared/models/ecommon-models';
 
 @Component({
   selector: 'top-menu-component',
