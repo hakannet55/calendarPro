@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ProjectModel, UserModel } from '../models/ecommon-models';
-import { dataInsertId, getData, setData } from '../utils/common-utils';
+import { ProjectModel, UserModel } from '../shared/models/ecommon-models';
+import snq, { dataInsertId, getData, setData } from '../shared/utils/common-utils';
 
 @Injectable({providedIn:'root'})
 export class DataManageService {
@@ -27,8 +27,13 @@ export class DataManageService {
   addProject(project: ProjectModel): void {
     const previousData = getData();
     const list=(previousData?.project || []);
-    const projectData = dataInsertId<ProjectModel>(project,list);
-    setData({ ...previousData, project: [...list, projectData] });
+    const pId=snq(()=>project.id);
+    if(!pId){
+      const projectData = dataInsertId<ProjectModel>(project,list);
+      setData({ ...previousData, project: [...list, projectData] });
+    }else{
+      setData({ ...previousData, project: [...list, project] });
+    }
   }
 
 }

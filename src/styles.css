@@ -71,3 +71,21 @@ nav::-webkit-scrollbar-thumb:hover {
   padding: 3px;
   padding-left: 0px;
 }
+
+.input-group input,
+.input-group select,
+.input-group textarea,
+.input-group select:hover,
+.input-group select:active {
+  border: 1px solid lightgray;
+}
+
+img.icon-image {
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+}
+
+.is-hover:hover {
+  opacity: 0.5 !important;
+}

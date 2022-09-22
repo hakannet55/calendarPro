@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { UserModel } from '../../../models/ecommon-models';
-import snq, { getData } from '../../../utils/common-utils';
+import { UserModel } from '../../../shared/models/ecommon-models';
+import snq, { getData } from '../../../shared/utils/common-utils';
 import { Router } from '@angular/router';
 import { DataManageService } from '../../../services/data-manage.service';
 

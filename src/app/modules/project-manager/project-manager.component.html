@@ -10,21 +10,42 @@
     ></atom-button-component>
   </div>
 
-  <div *ngIf="showCreateProjectForm" style="background: #f0f0df;border-radius: 10px">
-    <h4 class="p-2" style="font-size: 0.9em">
+  <div *ngIf="showCreateProjectForm" style="background: #f4f4ef;border-radius: 10px">
+    <h4 class="p-2" style="font-size: 0.9em;background: lightgoldenrodyellow;">
       <span style="font-size: 1.2em;color: lightslategrey;">Proje Ekleme</span>
       <span class="btn close-btn" (click)="showCreateProjectForm = false">X</span>
     </h4>
-    <div class="p-3">
-      <atom-input-text label="Proje Adı" (changed)="projectName = $event"></atom-input-text>
-      <atom-input-text label="Detay" (changed)="projectDetail = $event"></atom-input-text>
+    <div class="p-3" style="padding-bottom: 0px !important;">
+      <atom-input-text label="Proje Adı" [value]="projectName" (changed)="projectName = $event"></atom-input-text>
+      <atom-input-text label="Detay" [value]="projectDetail" (changed)="projectDetail = $event"></atom-input-text>
+    </div>
+    <div class="p-3" style="padding-bottom: 0px !important;">
+      <p class="m-1 p-1">Kullanıcı Tanımla</p>
+      <div>
+        <atom-select-option [options]="projeUsersOption" (changed)="addSelectedUser($event)"></atom-select-option>
+      </div>
+      <div class="d-flex">
+        <div
+          class="card d-flex col-3 p-3 m-2"
+          *ngFor="let item of projeUsers; let i = index"
+          style="text-align: center"
+        >
+          <img src="assets/images/user.jpg" class="icon-image m-auto" />
+          <p class="font-weight-bold">{{ item.name }}</p>
+          <div class="">
+            {{ item.brans }}
+          </div>
+          <div (click)="removeUser(i)" class="btn btn-outline-danger btn-sm">Kaldır</div>
+        </div>
+      </div>
     </div>
     <div class="d-flex pb-2">
       <atom-button-component
         (click)="saveNewProject()"
         style="margin: auto"
-        text="Kaydet"
         icon="save"
+        extraClass="bg-white"
+        [text]="updateMode ? 'Güncelle' : 'Kaydet'"
       ></atom-button-component>
     </div>
   </div>
@@ -32,23 +53,39 @@
   <table class="table table-striped table-hover table-sm">
     <thead>
       <tr>
-        <th>#</th>
+        <th>Kaldır</th>
+        <th>Güncelle</th>
         <th>Proje</th>
+        <th>Personel</th>
         <th>İlerleme</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of setDataList(); let i = index">
-        <td>
+      <tr *ngFor="let item of getDataList(); let i = index">
+        <td style="width:50px">
           <span
             title="Seçili öğeyi kaldır?"
             class="pointer fa fa-fw fa-minus-circle text-c-red"
             (click)="removeFromList(i)"
           ></span>
         </td>
+        <td style="width:130px;margin-left:0px">
+          <div
+            title="Düzenle"
+            class="pointer text-c-blue is-hover"
+            style="min-width: 80px;width: auto;color: #5eb4b4;"
+            (click)="editProje(i)"
+          >
+            Düzenle
+            <i class="fa fa-fw fa-pencil-square-o"></i>
+          </div>
+        </td>
         <td>
           <h4>{{ item.name }}</h4>
           <p>{{ item.detail }}</p>
+        </td>
+        <td>
+          <p *ngFor="let sub of item.users">{{ sub.name }} - {{ sub.brans }}</p>
         </td>
         <td>55%</td>
       </tr>

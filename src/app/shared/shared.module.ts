@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { ButtonComponent } from './atoms/button/button.component';
 import { CommonModule } from '@angular/common';
-import { InputTextComponent } from './atoms';
+import { AtomSelectOption, InputTextComponent } from './atoms';
 import { FormsModule } from '@angular/forms';
 
-const components = [ButtonComponent, InputTextComponent];
+const components = [ButtonComponent, InputTextComponent, AtomSelectOption];
 
 @NgModule({
   declarations: [...components],
