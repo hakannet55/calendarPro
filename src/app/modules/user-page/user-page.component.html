@@ -12,12 +12,12 @@
 
   <div *ngIf="showCreateForm" style="background: #f0f0df;border-radius: 10px">
     <h4 class="p-2" style="font-size: 0.9em">
-      <span style="font-size: 1.2em;color: lightslategrey;">Proje Ekleme</span>
+      <span style="font-size: 1.2em;color: lightslategrey;">Personel Ekleme</span>
       <span class="btn close-btn" (click)="showCreateForm = false">X</span>
     </h4>
     <div class="p-3">
-      <atom-input-text label="Proje Adı" (changed)="personelName = $event"></atom-input-text>
-      <atom-input-text label="Detay" (changed)="personelDetail = $event"></atom-input-text>
+      <atom-input-text label="Ad Soyad" (changed)="personelName = $event"></atom-input-text>
+      <atom-select-option label="Branş" (changed)="personelBrans = $event" [options]="options"></atom-select-option>
     </div>
     <div class="d-flex pb-2">
       <atom-button-component (click)="saveNew()" style="margin: auto" text="Kaydet" icon="save"></atom-button-component>
@@ -28,8 +28,9 @@
     <thead>
       <tr>
         <th>#</th>
-        <th>Proje</th>
-        <th>İlerleme</th>
+        <th>Personel</th>
+        <th>Branş</th>
+        <th>Projeler</th>
       </tr>
     </thead>
     <tbody>
@@ -42,10 +43,14 @@
           ></span>
         </td>
         <td>
-          <h4>{{ item.name }}</h4>
-          <p>{{ item.detail }}</p>
+          {{ item.name }}
         </td>
-        <td>55%</td>
+        <td>
+          {{ item.brans }}
+        </td>
+        <td>
+          {{ item.projeler }}
+        </td>
       </tr>
     </tbody>
   </table>

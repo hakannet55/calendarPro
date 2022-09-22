@@ -20,7 +20,9 @@ export interface TaskDataModel {
 
 export interface UserModel {
   name: string;
+  brans: string;
   taskList?: TaskDataModel[];
+  projeler?: string; //for UI
   id?: number;
 }
 
@@ -28,6 +30,7 @@ export interface ProjectModel {
   id?: number;
   name: string;
   detail: string;
+  users: UserModel[];
 }
 
 export interface LocalDatabaseDto {
@@ -35,4 +38,9 @@ export interface LocalDatabaseDto {
   theme?: 'default' | 'dark' | 'blue';
   users?: UserModel[];
   project?: ProjectModel[];
+}
+
+export interface SelectionOptionModel {
+  value: any;
+  text?: string;
 }

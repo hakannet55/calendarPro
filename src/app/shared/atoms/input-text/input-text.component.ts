@@ -34,5 +34,6 @@ export class InputTextComponent {
   @Output()
   changed = new EventEmitter<any>();
 
+  @Input()
   value: any;
 }
