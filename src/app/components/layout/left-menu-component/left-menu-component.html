@@ -41,6 +41,7 @@
             </div>
           </div>
           <ul
+            *ngIf="isLogin"
             (click)="clickedMenu()"
             class="pcoded-item pcoded-left-item"
             item-border="true"
@@ -48,7 +49,7 @@
             subitem-border="true"
           >
             <li class="">
-              <a href="index.html" class="waves-effect waves-dark">
+              <a routerLink="summary" class="waves-effect waves-dark">
                 <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                 <span class="pcoded-mtext">Dashboard</span>
                 <span class="pcoded-mcaret"></span>

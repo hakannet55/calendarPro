@@ -8,6 +8,7 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import * as _components from './components';
 import * as _layouts from './components/layout';
 import { TopMenuComponent } from './components/layout/top-menu-component/top-menu-component';
+import { FormsModule } from '@angular/forms';
 
 const states = [];
 const layouts = [_layouts.HeaderComponent, _layouts.LeftMenuComponent, _layouts.MainLayoutComponent];
@@ -20,7 +21,13 @@ const components = [
 
 @NgModule({
   declarations: [...components, ...layouts, TopMenuComponent],
-  imports: [BrowserModule, AppRoutingModule, NgxsModule.forRoot(states), NgxsReduxDevtoolsPluginModule.forRoot()],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgxsModule.forRoot(states),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    FormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
   exports: [],

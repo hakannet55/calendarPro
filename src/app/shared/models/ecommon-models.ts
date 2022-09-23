@@ -44,3 +44,16 @@ export interface SelectionOptionModel {
   value: any;
   text?: string;
 }
+
+export interface TableCol {
+  text: string;
+  index?: number;
+}
+
+export interface TableRow {
+  extraClass?: string;
+  data: any;
+  id?: number;
+  index?: number;
+  cols: TableCol[];
+}

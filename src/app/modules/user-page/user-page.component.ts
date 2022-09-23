@@ -21,8 +21,9 @@ export class UserPageComponent implements OnInit {
     { value: 'Test' },
     { value: 'FullStack' },
   ];
-
+  selectedUser: UserModel;
   projeler: ProjectModel[] = [];
+  updateMode = false;
 
   constructor(private dataManageService: DataManageService) {}
 
@@ -36,6 +37,7 @@ export class UserPageComponent implements OnInit {
 
   clickShowCreateProjectForm(): void {
     this.showCreateForm = true;
+    this.updateMode = false;
   }
 
   removePersonelFromList(i: number): void {
@@ -46,7 +48,13 @@ export class UserPageComponent implements OnInit {
 
   saveNew(): void {
     //, detail: this.personelDetail
-    this.dataManageService.addPersonel({ name: this.personelName, brans: this.personelBrans });
+    if (this.updateMode) {
+      const findIndex = this.getDataList().findIndex(i => i.id === this.selectedUser.id);
+      this.dataManageService.removePersonel(findIndex);
+      this.dataManageService.addPersonel({ name: this.personelName, brans: this.personelBrans });
+    } else {
+      this.dataManageService.addPersonel({ name: this.personelName, brans: this.personelBrans });
+    }
   }
 
   private getProjeFromUser(user: UserModel): string {
@@ -57,5 +65,13 @@ export class UserPageComponent implements OnInit {
       }
     });
     return projeler.map(i => i.name + '-' + i.detail).join(', ');
+  }
+
+  updatePersonelFromList(index: number): void {
+    this.showCreateForm = true;
+    this.selectedUser = this.getDataList().find((item, idx) => index === idx);
+    this.personelName = this.selectedUser.name;
+    this.personelBrans = this.selectedUser.brans;
+    this.updateMode = true;
   }
 }
