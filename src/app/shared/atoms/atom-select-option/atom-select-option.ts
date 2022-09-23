@@ -73,8 +73,9 @@ export class AtomSelectOption implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit(): void {
-    if (this.value) {
-      // this.value = this.options && this.options.length > 0 ? this.options[0].value : '';
+    if (!this.value) {
+      this.value = this.defaultValue || -1;
+      //this.value = this.options && this.options.length > 0 ? this.options[0].value : '';
     }
   }
 

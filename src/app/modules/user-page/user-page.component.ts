@@ -7,7 +7,7 @@ import snq, { getData } from '../../shared/utils/common-utils';
   selector: 'user-page-component',
   templateUrl: './user-page.component.html',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class UserPageComponent implements OnInit {
   showCreateForm = false;
@@ -28,7 +28,7 @@ export class UserPageComponent implements OnInit {
   constructor(private dataManageService: DataManageService) {}
 
   ngOnInit(): void {
-    this.projeler = getData().project;
+    this.init();
   }
 
   getDataList(): UserModel[] {
@@ -55,6 +55,8 @@ export class UserPageComponent implements OnInit {
     } else {
       this.dataManageService.addPersonel({ name: this.personelName, brans: this.personelBrans });
     }
+    this.personelBrans = '';
+    this.init();
   }
 
   private getProjeFromUser(user: UserModel): string {
@@ -73,5 +75,10 @@ export class UserPageComponent implements OnInit {
     this.personelName = this.selectedUser.name;
     this.personelBrans = this.selectedUser.brans;
     this.updateMode = true;
+  }
+
+  private init() {
+    this.projeler = getData().project;
+    this.showCreateForm = false;
   }
 }

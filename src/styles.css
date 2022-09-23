@@ -89,3 +89,34 @@ img.icon-image {
 .is-hover:hover {
   opacity: 0.5 !important;
 }
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.capitalize,
+select option,
+button {
+  text-transform: capitalize;
+}
+
+.userName {
+  font-weight: bold;
+  background: #eef6f8;
+  padding: 5px;
+  border-radius: 4px;
+  margin: 2px;
+}
+.no_pointer {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}
