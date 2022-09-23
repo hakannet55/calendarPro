@@ -17,11 +17,11 @@
 >
   <div class="pcoded-overlay-box"></div>
   <div class="pcoded-container navbar-wrapper">
-    <top-menu-component></top-menu-component>
+    <top-menu-component *ngIf="login"></top-menu-component>
 
     <div class="pcoded-main-container">
       <div class="pcoded-wrapper">
-        <left-menu-component></left-menu-component>
+        <left-menu-component [isLogin]="login"></left-menu-component>
         <div class="pcoded-content">
           <!-- Page-header start -->
           <div class="page-header">

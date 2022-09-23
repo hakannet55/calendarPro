@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ProjectModel, SelectionOptionModel, UserModel } from '../../shared/models/ecommon-models';
-import snq, { getData } from '../../shared/utils/common-utils';
+import snq, { getData, getProjectList } from '../../shared/utils/common-utils';
 import { DataManageService } from '../../services/data-manage.service';
 
 @Component({
@@ -18,16 +18,15 @@ export class ProjectManagerComponent implements OnInit {
   projeUsersOption: SelectionOptionModel[] = [];
   allUserDataList: UserModel[] = [];
   updateMode = false;
+  projeList: ProjectModel[] = [];
 
   constructor(private dataManageService: DataManageService) {}
 
   ngOnInit(): void {
+    const projeListData: ProjectModel[] = snq(() => getData().project) || [];
     this.allUserDataList = getData().users;
     this.projeUsersOption = this.allUserDataList.map(i => ({ value: i.id, text: i.name + '-' + i.brans }));
-  }
-
-  getDataList(): ProjectModel[] {
-    return snq(() => getData().project) || [];
+    this.projeList = getProjectList();
   }
 
   clickShowCreateProjectForm(): void {
@@ -46,7 +45,7 @@ export class ProjectManagerComponent implements OnInit {
 
   saveNewProject(): void {
     if (this.updateMode) {
-      const findIndex = this.getDataList().findIndex(i => i.id === this.selectedProject.id);
+      const findIndex = this.projeList.findIndex(i => i.id === this.selectedProject.id);
       this.dataManageService.removeProject(findIndex);
       this.dataManageService.addProject({
         name: this.projectName,
@@ -70,7 +69,7 @@ export class ProjectManagerComponent implements OnInit {
 
   editProje(index: number): void {
     this.showCreateProjectForm = true;
-    this.selectedProject = this.getDataList().find((item, idx) => index === idx);
+    this.selectedProject = this.projeList.find((item, idx) => index === idx);
     this.projectName = this.selectedProject.name;
     this.projectDetail = this.selectedProject.detail;
     this.projeUsers = this.selectedProject.users;

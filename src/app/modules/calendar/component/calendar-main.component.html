@@ -1,36 +1,17 @@
 <div class="card m-3 p-3">
-  <div>
-    <atom-button-component
-      text="Personel Listesi"
-      btnType="outline-success"
-      icon="user"
-      extraClass="m-2"
-      (click)="navigatePersonal()"
-    ></atom-button-component>
-    <atom-button-component
-      text="Proje Listesi"
-      btnType="linkedin"
-      icon="folder-o"
-      extraClass="m-2"
-      (click)="navigateProjectPage()"
-    ></atom-button-component>
-  </div>
-  <hr />
+  <div></div>
   <h4>Genel Takvim</h4>
   <table class="table table-striped table-hover table-sm">
     <thead>
       <tr>
-        <th>#</th>
-        <th>Personel</th>
-        <th>İlerleme</th>
+        <th *ngFor="let itemHead of headers">{{ itemHead.text }}</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of setDataList(); let i = index">
-        <td>
-          User
+      <tr *ngFor="let rowItm of tableRows; let i = index">
+        <td *ngFor="let col of rowItm.cols">
+          {{ col.text }}
         </td>
-        <td>{{ item.name }}</td>
         <td>55%</td>
       </tr>
     </tbody>

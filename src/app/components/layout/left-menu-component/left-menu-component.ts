@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
 declare const $;
 
@@ -8,6 +8,9 @@ declare const $;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LeftMenuComponent implements OnInit {
+  @Input()
+  isLogin = false;
+
   ngOnInit(): void {}
 
   clickedMenu() {

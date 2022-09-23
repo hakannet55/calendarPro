@@ -1,4 +1,4 @@
-import { LocalDatabaseDto } from '../models/ecommon-models';
+import { LocalDatabaseDto, ProjectModel } from '../models/ecommon-models';
 
 export function getData(key = 'data'): LocalDatabaseDto {
   const item = localStorage.getItem(key);
@@ -22,6 +22,24 @@ export function setData(obj: LocalDatabaseDto, key = 'data'): void {
 export function dataInsertId<T>(data: any, list: any[]): T {
   Object.assign(data, { id: list.length + 1 });
   return data;
+}
+
+export function getProjectList(): ProjectModel[] {
+  const fullData = getData();
+  const projeListData: ProjectModel[] = snq(() => fullData.project) || [];
+  const allUserDataList = fullData.users;
+
+  return projeListData.map(projeObj => ({
+    ...projeObj,
+    users: projeObj.users.map(prjUsr => {
+      const aa = allUserDataList.find(i => i.id === prjUsr.id);
+      if (aa) {
+        prjUsr.name = aa.name;
+        prjUsr.brans = aa.brans;
+      }
+      return prjUsr;
+    }),
+  }));
 }
 
 export function snq(callback, defaultValue = null) {
