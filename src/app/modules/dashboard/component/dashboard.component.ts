@@ -1,8 +1,11 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { UserModel } from '../../../shared/models/ecommon-models';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ProjectModel } from '../../../shared/models/ecommon-models';
 import snq, { getData } from '../../../shared/utils/common-utils';
 import { Router } from '@angular/router';
 import { DataManageService } from '../../../services/data-manage.service';
+import { BaseChartDirective } from 'ng2-charts';
+import { SingleOrMultiDataSet } from 'ng2-charts/lib/base-chart.directive';
+import * as chartJs from 'chart.js';
 
 @Component({
   selector: 'dashboard-component',
@@ -10,17 +13,32 @@ import { DataManageService } from '../../../services/data-manage.service';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
+  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
+
+  lineChartData: SingleOrMultiDataSet;
+
   constructor(private route: Router, private dataManageService: DataManageService) {}
 
-  setDataList(): UserModel[] {
-    return snq(() => getData().users) || [];
+  ngOnInit(): void {
+    this.lineChartData = [20, 55, 45, 15, 59, 80, 181, 16, 55, 10];
   }
 
-  navigatePersonal() {
-    this.route.navigate(['/user-page']);
+  // events
+  linedataset: chartJs.ChartDataSets[] = [
+    { label: 'data-1', data: [44, 20, 55, 45, 15, 59, 80, 181, 16, 55, 10, 155] },
+    { label: 'data-2', data: [144, 50, 55, 45, 15, 59, 80, 181, 96, 55, 10, 115] },
+  ];
+
+  public chartClicked({ event, active }: { event?: any; active?: {}[] }): void {
+    console.log(event, active);
   }
-  navigateProjectPage(): void {
-    this.route.navigate(['/project-manager']);
+
+  setDataList(): ProjectModel[] {
+    return snq(() => getData().project) || [];
+  }
+
+  navigate(path: string): void {
+    this.route.navigate([path]);
   }
 }

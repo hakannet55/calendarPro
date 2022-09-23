@@ -1,19 +1,67 @@
 <div class="card m-3 p-3">
   <div></div>
-  <h4>Genel Takvim</h4>
-  <table class="table table-striped table-hover table-sm">
-    <thead>
-      <tr>
-        <th *ngFor="let itemHead of headers">{{ itemHead.text }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let rowItm of tableRows; let i = index">
-        <td *ngFor="let col of rowItm.cols">
-          {{ col.text }}
-        </td>
-        <td>55%</td>
-      </tr>
-    </tbody>
-  </table>
+
+  <br />
+  <div>
+    <ul class="nav nav-tabs w3-animate-top">
+      <li class="nav-item">
+        <div
+          (click)="selectedTabClick('proje')"
+          [class.active]="selectedTab === 'proje'"
+          class="btn nav-link active"
+          aria-current="page"
+        >
+          <i class="fa fa-calendar fa-fw"></i>Proje Takvim
+        </div>
+      </li>
+      <li class="nav-item">
+        <div
+          (click)="selectedTabClick('personel')"
+          [class.active]="selectedTab === 'personel'"
+          class="btn nav-link active"
+          aria-current="page"
+        >
+          <i class="fa fa-user-circle-o fa-fw"></i>Personel Takvim
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <div *ngIf="selectedTab === 'proje'" class="page w3-animate-left">
+      <h4>Proje Takvimi</h4>
+      <table class="table table-striped table-hover table-sm">
+        <thead>
+          <tr>
+            <th *ngFor="let itemHead of headers">{{ itemHead.text }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let rowItm of tableRows; let i = index">
+            <td *ngFor="let col of rowItm.cols">
+              {{ col.text }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="selectedTab === 'personel'" class="page w3-animate-left">
+      <h4>Personel Takvimi</h4>
+      <table class="table table-striped table-hover table-sm">
+        <thead>
+          <tr>
+            <th *ngFor="let itemHead of headers">{{ itemHead.text }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let rowItm of tableRows; let i = index">
+            <td *ngFor="let col of rowItm.cols">
+              {{ col.text }}
+            </td>
+            <td>55%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

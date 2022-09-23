@@ -83,19 +83,16 @@ export function getYear(date: Date): number {
 export function getDateRange(start: Date, end: Date, format: string): string[] {
   const startMonth = +moment(start).format('M');
   const endMonth = +moment(end).format('M');
-  console.log(startMonth, endMonth);
   const year = getYear(start);
   const result: string[] = [];
   if (endMonth > startMonth) {
     const diff = endMonth - startMonth + 1;
     let crMonthNumber = startMonth - 1;
-    console.log(diff, crMonthNumber);
     for (let i = 0; i < diff; i++) {
       result.push(moment(getDate(crMonthNumber, 1, year)).format(format));
       crMonthNumber++;
     }
   }
-  console.log(result);
   return result;
 }
 
