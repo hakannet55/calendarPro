@@ -1,6 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TableCol, TableRow, UserModel } from '../../../shared/models/ecommon-models';
-import snq, { getData } from '../../../shared/utils/common-utils';
+import snq, {
+  currentDate,
+  getData,
+  getDate,
+  getDateRange,
+  getMonthNameWithDate,
+} from '../../../shared/utils/common-utils';
 import { Router } from '@angular/router';
 import { DataManageService } from '../../../services/data-manage.service';
 
@@ -17,7 +23,25 @@ export class CalendarMainComponent implements OnInit {
   constructor(private route: Router, private dataManageService: DataManageService) {}
 
   ngOnInit(): void {
+    // 2022 auto detech or manual
+    const year = currentDate().year;
     this.tableRows = this.setDataList().map(i => ({ data: i, cols: [{ text: i.name }, { text: i.brans }] }));
+    const firstDate = getDate(0, 1, year);
+    const endDate = getDate(11, 1, year);
+    // const month = getMonthName(firstDate);
+    const monthData: { month: string; date: string }[] = getDateRange(firstDate, endDate, 'DD-MM-Y').map(i => ({
+      date: i,
+      month: getMonthNameWithDate(i),
+    }));
+    const blankAry: TableCol[] = [];
+    monthData.forEach(line1 => {
+      this.headers.push({ text: line1.month });
+      blankAry.push({ text: '' });
+    });
+
+    this.tableRows = this.tableRows.map(i => {
+      return { ...i, cols: [...i.cols, ...blankAry] };
+    });
   }
 
   setDataList(): UserModel[] {

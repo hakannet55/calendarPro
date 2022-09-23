@@ -11,10 +11,10 @@
   </div>
 
   <div *ngIf="showCreateProjectForm" style="background: #f4f4ef;border-radius: 10px">
-    <h4 class="p-2" style="font-size: 0.9em;background: lightgoldenrodyellow;">
+    <h5 class="p-2 mb-1" style="font-size: 0.9em;background: lightgoldenrodyellow;">
       <span style="font-size: 1.2em;color: lightslategrey;">Proje Ekleme</span>
       <span class="btn close-btn" (click)="showCreateProjectForm = false">X</span>
-    </h4>
+    </h5>
     <div class="p-3" style="padding-bottom: 0px !important;">
       <atom-input-text label="Proje Adı" [value]="projectName" (changed)="projectName = $event"></atom-input-text>
       <atom-input-text label="Detay" [value]="projectDetail" (changed)="projectDetail = $event"></atom-input-text>
@@ -31,7 +31,7 @@
           style="text-align: center"
         >
           <img src="assets/images/user.jpg" class="icon-image m-auto" />
-          <p class="font-weight-bold">{{ item.name }}</p>
+          <p class="userName">{{ item.name }}</p>
           <div class="">
             {{ item.brans }}
           </div>
@@ -50,7 +50,7 @@
     </div>
   </div>
 
-  <table class="table table-striped table-hover table-sm">
+  <table class="table table-hover table-sm">
     <thead>
       <tr>
         <th>Kaldır</th>
@@ -81,11 +81,18 @@
           </div>
         </td>
         <td>
-          <h4>{{ item.name }}</h4>
-          <p>{{ item.detail }}</p>
+          <h4 class="capitalize">{{ item.name }}</h4>
+          <p class="capitalize">{{ item.detail }}</p>
         </td>
-        <td>
-          <p *ngFor="let sub of item.users">{{ sub.name }} - {{ sub.brans }}</p>
+        <td class="no_pointer">
+          <div
+            *ngFor="let sub of item.users"
+            class="card mb-1 d-flex flex-row"
+            style="box-shadow: unset;background: #fcfae8;"
+          >
+            <p class="capitalize userName w-50">{{ sub.name }}</p>
+            <i class="p-2 d-inline">{{ sub.brans }}</i>
+          </div>
         </td>
         <td>55%</td>
       </tr>
