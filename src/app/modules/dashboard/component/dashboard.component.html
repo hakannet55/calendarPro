@@ -1,26 +1,58 @@
 <div class="card m-3 p-3">
-  <div>
+  <div class="pb-3">
+    <atom-button-component
+      text="Takvim"
+      btnType="outline-success"
+      icon="calendar"
+      extraClass="m-2"
+      (click)="navigate('calendar')"
+    ></atom-button-component>
     <atom-button-component
       text="Personel Listesi"
       btnType="outline-success"
       icon="user"
       extraClass="m-2"
-      (click)="navigatePersonal()"
+      (click)="navigate('user-page')"
     ></atom-button-component>
     <atom-button-component
       text="Proje Listesi"
       btnType="linkedin"
       icon="folder-o"
       extraClass="m-2"
-      (click)="navigateProjectPage()"
+      (click)="navigate('project-manager')"
     ></atom-button-component>
   </div>
-
+  <div class="card p-3">
+    <div class="flex">
+      <div class="flex-item">
+        <div class="card chart">
+          <canvas
+            baseChart
+            width="400"
+            height="400"
+            chartType="line"
+            [datasets]="linedataset"
+            (chartClick)="chartClicked($event)"
+          ></canvas>
+        </div>
+        <div class="card chart">
+          <canvas
+            baseChart
+            width="400"
+            height="400"
+            chartType="pie"
+            [data]="lineChartData"
+            (chartClick)="chartClicked($event)"
+          ></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
   <table class="table table-striped table-hover table-sm">
     <thead>
       <tr>
         <th>#</th>
-        <th>Personel</th>
+        <th>Proje</th>
         <th>İlerleme</th>
       </tr>
     </thead>

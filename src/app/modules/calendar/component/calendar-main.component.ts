@@ -17,17 +17,41 @@ import { DataManageService } from '../../../services/data-manage.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarMainComponent implements OnInit {
-  headers: TableCol[] = [{ text: '#' }, { text: 'Personel' }, { text: 'İlerleme' }];
+  headers: TableCol[] = [];
   tableRows: TableRow[] = [];
+  selectedTab: 'personel' | 'proje' = 'proje';
+  // 2022 auto detech or manual
+  year: number;
 
   constructor(private route: Router, private dataManageService: DataManageService) {}
 
   ngOnInit(): void {
     // 2022 auto detech or manual
-    const year = currentDate().year;
-    this.tableRows = this.setDataList().map(i => ({ data: i, cols: [{ text: i.name }, { text: i.brans }] }));
-    const firstDate = getDate(0, 1, year);
-    const endDate = getDate(11, 1, year);
+    this.year = currentDate().year;
+
+    // default initialize tab and table
+    this.selectedTabClick(this.selectedTab);
+  }
+
+  setDataList(): UserModel[] {
+    return snq(() => getData().users) || [];
+  }
+
+  navigatePersonal() {
+    this.route.navigate(['/user-page']);
+  }
+  navigateProjectPage(): void {
+    this.route.navigate(['/project-manager']);
+  }
+
+  initTableProje(): void {
+    this.headers = [{ text: '#' }, { text: 'Personel' }, { text: 'İlerleme' }];
+    this.tableRows = this.setDataList().map(i => ({
+      data: i,
+      cols: [{ text: i.name }, { text: i.brans }, { text: '%50' }],
+    }));
+    const firstDate = getDate(0, 1, this.year);
+    const endDate = getDate(11, 1, this.year);
     // const month = getMonthName(firstDate);
     const monthData: { month: string; date: string }[] = getDateRange(firstDate, endDate, 'DD-MM-Y').map(i => ({
       date: i,
@@ -44,14 +68,17 @@ export class CalendarMainComponent implements OnInit {
     });
   }
 
-  setDataList(): UserModel[] {
-    return snq(() => getData().users) || [];
+  initTablePersonel(): void {
+    this.headers = [{ text: '#' }, { text: 'Personel' }, { text: 'Projeler' }];
+    this.tableRows = [];
   }
 
-  navigatePersonal() {
-    this.route.navigate(['/user-page']);
-  }
-  navigateProjectPage(): void {
-    this.route.navigate(['/project-manager']);
+  selectedTabClick(tabName: string) {
+    this.selectedTab = tabName as any;
+    if (this.selectedTab === 'personel') {
+      this.initTablePersonel();
+    } else {
+      this.initTableProje();
+    }
   }
 }
