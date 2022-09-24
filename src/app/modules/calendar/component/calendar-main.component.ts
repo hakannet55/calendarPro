@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { TableCol, TableRow, UserModel } from '../../../shared/models/ecommon-models';
+import { ProjectModel, TableCol, TableRow } from '../../../shared/models/ecommon-models';
 import snq, {
   currentDate,
   getData,
@@ -13,6 +13,7 @@ import { DataManageService } from '../../../services/data-manage.service';
 @Component({
   selector: 'calendar-main-component',
   templateUrl: './calendar-main.component.html',
+  styleUrls: ['./calendar-main.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -33,10 +34,6 @@ export class CalendarMainComponent implements OnInit {
     this.selectedTabClick(this.selectedTab);
   }
 
-  setDataList(): UserModel[] {
-    return snq(() => getData().users) || [];
-  }
-
   navigatePersonal() {
     this.route.navigate(['/user-page']);
   }
@@ -46,9 +43,9 @@ export class CalendarMainComponent implements OnInit {
 
   initTableProje(): void {
     this.headers = [{ text: '#' }, { text: 'Personel' }, { text: 'İlerleme' }];
-    this.tableRows = this.setDataList().map(i => ({
-      data: i,
-      cols: [{ text: i.name }, { text: i.brans }, { text: '%50' }],
+    this.tableRows = (snq(() => getData().project) || []).map((item: ProjectModel) => ({
+      data: item,
+      cols: [{ text: item.name }, { text: item.detail }, { text: '%50' }],
     }));
     const firstDate = getDate(0, 1, this.year);
     const endDate = getDate(11, 1, this.year);

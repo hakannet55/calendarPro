@@ -1,11 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { ProjectModel } from '../../../shared/models/ecommon-models';
-import snq, { getData } from '../../../shared/utils/common-utils';
+import { ChartDataModel, ProjectModel } from '../../../shared/models/ecommon-models';
+import snq, { charUtilsData, getData, getRandomInt } from '../../../shared/utils/common-utils';
 import { Router } from '@angular/router';
 import { DataManageService } from '../../../services/data-manage.service';
 import { BaseChartDirective } from 'ng2-charts';
-import { SingleOrMultiDataSet } from 'ng2-charts/lib/base-chart.directive';
-import * as chartJs from 'chart.js';
 
 @Component({
   selector: 'dashboard-component',
@@ -16,19 +14,23 @@ import * as chartJs from 'chart.js';
 export class DashboardComponent implements OnInit {
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
-  lineChartData: SingleOrMultiDataSet;
+  circleChartData: number[];
+
+  // events
+  lineChartdata: ChartDataModel;
 
   constructor(private route: Router, private dataManageService: DataManageService) {}
 
   ngOnInit(): void {
-    this.lineChartData = [20, 55, 45, 15, 59, 80, 181, 16, 55, 10];
+    const data = getData();
+    this.lineChartdata = charUtilsData(
+      data.project.map(i => ({
+        name: i.name,
+        data: [getRandomInt() + 20, getRandomInt() + 5, getRandomInt() + 15, getRandomInt() + 9, getRandomInt() + 20],
+      })),
+    );
+    this.circleChartData = [getRandomInt() + 20, getRandomInt() + 10, getRandomInt() + 12];
   }
-
-  // events
-  linedataset: chartJs.ChartDataSets[] = [
-    { label: 'data-1', data: [44, 20, 55, 45, 15, 59, 80, 181, 16, 55, 10, 155] },
-    { label: 'data-2', data: [144, 50, 55, 45, 15, 59, 80, 181, 96, 55, 10, 115] },
-  ];
 
   public chartClicked({ event, active }: { event?: any; active?: {}[] }): void {
     console.log(event, active);

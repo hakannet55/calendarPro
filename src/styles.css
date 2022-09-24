@@ -135,3 +135,12 @@ button {
   width: 400px;
   height: 400px;
 }
+
+.btn.nav-link:hover,
+.btn.nav-link:active,
+.btn.nav-link:focus {
+  box-shadow: inset 0px 10px 19px -17px #525252 !important;
+}
+.btn.nav-link.active {
+  box-shadow: inset 0px 5px 20px -18px black;
+}

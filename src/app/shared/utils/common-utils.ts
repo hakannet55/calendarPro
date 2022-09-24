@@ -1,4 +1,4 @@
-import { LocalDatabaseDto, ProjectModel } from '../models/ecommon-models';
+import { ChartDataModel, LocalDatabaseDto, ProjectModel } from '../models/ecommon-models';
 import * as moment from 'moment';
 
 export function getData(key = 'data'): LocalDatabaseDto {
@@ -104,4 +104,15 @@ export function getMonthNameWithDate(date: string): string {
   // SampleDate "01-12-2022" => 12 => aralık
   const getMonth = +date.split('-')[1];
   return getMonthName(getDate(getMonth - 1, 1));
+}
+
+export function charUtilsData(dataset: { name: string; data: number[] }[]): ChartDataModel {
+  const linedataLabels: string[] = (dataset[0].data as any[]).map((i, index) => index.toString());
+  return { data: dataset.map(i => ({ data: i.data, label: i.name })), labels: linedataLabels };
+}
+
+export function getRandomInt(min = 1, max = 99): number {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
 }

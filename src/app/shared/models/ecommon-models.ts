@@ -1,4 +1,5 @@
 import { Callback } from '@ngxs/store/src/internal/internals';
+import * as chartJs from 'chart.js';
 
 export namespace eCommon {
   export interface MenuItem {
@@ -56,4 +57,9 @@ export interface TableRow {
   id?: number;
   index?: number;
   cols: TableCol[];
+}
+
+export interface ChartDataModel {
+  labels: string[];
+  data: chartJs.ChartDataSets[];
 }
