@@ -1,6 +1,19 @@
-<div class="card m-3 p-3">
+<div class="card m-3 p-3 tab_top_header_wrapper">
   <div></div>
-
+  <div class="tab-gun d-flex justify-content-center">
+    <div class="btn btn-default btn_a1" onclick="sEkders_date_nextChange(-1)">&lt;</div>
+    <input
+      onchange="t_loadonchangeDersFilterEkders()"
+      class="datepicker"
+      style="width: 120px;display:none"
+      type="text"
+    />
+    <div class="gun no_pointer">
+      <span class="gun1">08</span>&nbsp;-
+      <span class="gun2">2022</span>
+    </div>
+    <div class="btn btn-default btn_a2" onclick="sEkders_date_nextChange(1)">&gt;</div>
+  </div>
   <br />
   <div>
     <ul class="nav nav-tabs w3-animate-top">

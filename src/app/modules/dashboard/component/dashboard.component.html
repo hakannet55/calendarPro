@@ -31,7 +31,8 @@
             width="400"
             height="400"
             chartType="line"
-            [datasets]="linedataset"
+            [labels]="lineChartdata.labels"
+            [datasets]="lineChartdata.data"
             (chartClick)="chartClicked($event)"
           ></canvas>
         </div>
@@ -41,7 +42,8 @@
             width="400"
             height="400"
             chartType="pie"
-            [data]="lineChartData"
+            [labels]="lineChartdata.labels"
+            [data]="lineChartdata.data[0].data"
             (chartClick)="chartClicked($event)"
           ></canvas>
         </div>

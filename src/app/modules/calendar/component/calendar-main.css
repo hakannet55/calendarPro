@@ -1,0 +1,25 @@
+.gun {
+  line-height: 3;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding-left: 15px;
+  padding-right: 15px;
+  background: #eafbf9;
+  border-radius: 0px;
+  border: 1px solid #e7e7e7;
+}
+.tab_top_header_wrapper .tab-gun .btn_a1 {
+  border-radius: 15px 0px 0px 15px;
+}
+.tab_top_header_wrapper .tab-gun .btn_a2 {
+  border-radius: 0px 15px 15px 0px;
+}
+.tab_top_header_wrapper .tab-gun .btn {
+  font-weight: bold;
+  font-size: 1.6em;
+  font-family: monospace;
+  border-color: lightgrey;
+  background: #edfaff;
+  padding-left: 15px;
+  padding-right: 15px;
+}
